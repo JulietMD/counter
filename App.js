@@ -8,6 +8,8 @@ export default class App extends React.Component {
     this.state = {
       count: 0
     }
+
+    // fabien is great !!!
   }
 
   render() {
