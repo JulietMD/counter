@@ -56,9 +56,7 @@ export default class App extends React.Component {
             }}
           >
             <Text
-              style={{
-                fontSize: 100,
-              }}
+              style={{ fontSize: 100 }}
             >
               {'+'}
             </Text>
