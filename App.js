@@ -1,15 +1,20 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      count: 0
+      count: 10
     }
 
-    // fabien is great !!!
+  }
+
+  HandleReset = () => {
+    this.setState({
+      count: 0
+    })
   }
 
   render() {
@@ -22,7 +27,29 @@ export default class App extends React.Component {
         <Text>
           {count}
         </Text>
+
+        <Button title = {'Reset'}
+         onPress={this.HandleReset}
+        />   
+
+        <Button title = {'+'}
+          onPress={()=>{
+            this.setState({
+              count: count + 1
+            })
+          }}
+        />
+
+        <Button title = {'-'}
+          onPress = {()=>{
+            this.setState({
+              count: count - 1
+            })
+          }}
+        />
+
       </View>
+
     );
   }
 }
