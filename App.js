@@ -9,7 +9,7 @@ export default class App extends React.Component {
       count: 0
     }
 
-    // fabien is great !!!
+    // fabien is great !!!, no he is AMAZING !!!
   }
 
   render() {
