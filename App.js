@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -24,42 +24,69 @@ export default class App extends React.Component {
     } = this.state
 
     return (
-      <View style={styles.container}>
-        <Text>
+      <View
+        style={{
+          flex: 1,
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+
+          backgroundColor: '#fff',
+        }}
+      >
+
+        <Text
+          style={{
+            fontSize: 200,
+          }}
+        >
           {count}
         </Text>
 
-        <Button title = {'Reset'}
-         onPress={this.HandleReset}
-        />   
-
-        <Button title = {'+'}
-          onPress={()=>{
-            this.setState({
-              count: count + 1
-            })
+        <View
+          style={{
+            flexDirection: 'row',
           }}
-        />
+        >
+          <TouchableOpacity
+            onPress={()=>{
+              this.setState({
+                count: count + 1
+              })
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 100
+              }}
+            >
+              {'+'}
+            </Text>
+          </TouchableOpacity>
 
-        <Button title = {'-'}
-          onPress = {()=>{
-            this.setState({
-              count: count - 1
-            })
-          }}
-        />
+          <TouchableOpacity
+            onPress = {()=>{
+              this.setState({
+                count: count - 1
+              })
+            }}
+          >
+            <Text>
+              {'-'}
+            </Text>
+          </TouchableOpacity>
+        </View>
+        
+        <TouchableOpacity
+          onPress={this.HandleReset}
+        >
+          <Text>
+            {'Reset'}
+          </Text>
+        </TouchableOpacity>
 
       </View>
 
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
