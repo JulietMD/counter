@@ -16,6 +16,8 @@ const DEFAULT_COLOR = '#00FF00'
 // TODO reset should not be active if the value is alreay the initail one
 // TODO I want from 10 to 0 lower I go, more close to ON_ZERO_COLOR the number should be over 9 if should be DEFAULT_COLOR
 
+// lib to playu with colors https://www.npmjs.com/package/color
+// need to be installed and saved !!!!
 export default class App extends React.Component {
   constructor(props) {
     super(props)
