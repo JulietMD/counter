@@ -1,13 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-const VISIBLE_STYLE = {
+const VISIBLE_STYLE = {             //THis constant isn't being used - delete? 
   borderColor: '#000',
   borderWidth: 1,
 }
 
 const BUTTON_FONT_SIZE = 150
-const INITIAL_COUNT = 10
+const INITIAL_COUNT = 10            //Can change the initial starting number of the counter 
 
 const ON_ZERO_COLOR = '#FF0000'
 const DEFAULT_COLOR = '#00FF00'
@@ -40,38 +40,27 @@ export default class App extends React.Component {
 
     return (
       <View
-        style={{
-          flex: 1,
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-
-          backgroundColor: '#fff',
-        }}
+        style={[                                //The outer wrapper
+          styles.outerWrapper,
+        ]}
       >
-        <Text
-          style={{
-            fontSize: 200,
-          }}
+        <Text                                   // The counter
+          style={[
+            styles.counter,
+          ]}
         >
           {count}
         </Text>
 
         <View
-          style={{
-            width: '70%',
-            flexDirection: 'row',
-            justifyContent: 'space-around',
-          }}
+          style={[                              //Plus minus inner wrapper 
+            styles.plusMinusWrapper,
+          ]}
         >
-          <TouchableOpacity
-            style={{
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-              height: BUTTON_FONT_SIZE * 2/3,
-              aspectRatio: 1,
-            }}
+          <TouchableOpacity                     //Add '+' Button
+            style={[
+              styles.plusMinusButton,
+            ]}
             onPress={()=>{
               this.setState({
                 count: count + 1
@@ -79,19 +68,18 @@ export default class App extends React.Component {
             }}
           >
             <Text
-              style={{
-                fontSize: BUTTON_FONT_SIZE,
-                color: '#3FE80C',
-                marginTop: BUTTON_FONT_SIZE * - 1/3,
-              }}
+              style={[
+                styles.plusButtonText,
+                styles.plusMinusButtonText,
+              ]}
             >
               {'+'}
-            </Text>
-          </TouchableOpacity>
+            </Text>  
+          </TouchableOpacity>                  
 
-          <TouchableOpacity
+          <TouchableOpacity                    //Minus '-' button
             style={{
-              flexDirection: 'column',
+              flexDirection: 'column',          //Tried putting plusminusbutton style here, didn't work with 'display'
               justifyContent: 'center',
               alignItems: 'center',
               height: BUTTON_FONT_SIZE * 2/3,
@@ -115,16 +103,16 @@ export default class App extends React.Component {
           </TouchableOpacity>
         </View>
         
-        <TouchableOpacity
+        <TouchableOpacity                       // 'Reset' button
           onPress={this.HandleReset}
-          style={{
-            marginTop: 50,
-          }}
+          style={[
+            styles.resetButton,
+          ]}
         >
           <Text
-            style={{
-              fontSize: 50,
-            }}
+            style={[
+              styles.resetButtonText
+            ]}
           >
             {'Reset'}
           </Text>
@@ -136,28 +124,50 @@ export default class App extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  counter: {
-
+  outerWrapper: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#fff',
   },
+  
+  counter: {
+    fontSize: 200,
+  },
+
   plusMinusWrapper: {
+    width: '70%',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
 
   },
   plusButtonText: {
+    color: '#3FE80C',
   },
+
   minusButtonText: {
     color: '#E82C0C',
   },
+
   plusMinusButtonText: {
     fontSize: BUTTON_FONT_SIZE,
     marginTop: BUTTON_FONT_SIZE * - 1/3,
   },
+
   plusMinusButton: {
-
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: BUTTON_FONT_SIZE * 2/3,
+    aspectRatio: 1,
   },
+
   resetButton: {
-
+    marginTop: 50,
   },
-  resetButtonText: {
 
+  resetButtonText: {
+    fontSize: 50,
   },
 })
