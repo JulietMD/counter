@@ -61,7 +61,7 @@ export default class App extends React.Component {
       >
         <Text                                   // The counter
           style={[
-            styles.counter,
+            styles.counter, 
           ]}
         >
           {count}
