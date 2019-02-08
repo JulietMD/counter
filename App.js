@@ -51,6 +51,7 @@ export default class App extends React.Component {
     } = this.state
 
  canGoDown = count > 0;
+ canNotReset = count === INITIAL_COUNT;         
 
     return (
       <View
@@ -109,14 +110,19 @@ export default class App extends React.Component {
         </View>
         
         <TouchableOpacity                       // 'Reset' button
-          onPress={this.HandleReset}
+          onPress={canNotReset
+            ? null
+            : this.HandleReset
+          }
+
           style={[
-            styles.resetButton,
+            styles.resetButton, 
           ]}
         >
           <Text
             style={[
-              styles.resetButtonText
+              styles.resetButtonText,
+              canNotReset ? [styles.disabled] : null,
             ]}
           >
             {'Reset'}
@@ -174,6 +180,7 @@ const styles = StyleSheet.create({
 
   resetButtonText: {
     fontSize: 50,
+    color: 'black',
   },
 
   disabled: {
