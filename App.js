@@ -27,9 +27,21 @@ export default class App extends React.Component {
     }
   }
 
-  HandleReset = () => {
+  HandleReset = () => {       //Reset
     this.setState({
       count: INITIAL_COUNT
+    })
+  }
+
+  HandlePlus = () => {      //Plus
+    this.setState({
+      count: this.state.count + 1
+    })
+  }
+
+  HandleMinus = () => {       //Minus
+    this.setState({
+      count: this.state.count - 1
     })
   }
 
@@ -37,6 +49,8 @@ export default class App extends React.Component {
     const {
       count,
     } = this.state
+
+ canGoDown = count > 0;
 
     return (
       <View
@@ -61,11 +75,7 @@ export default class App extends React.Component {
             style={[
               styles.plusMinusButton,
             ]}
-            onPress={()=>{
-              this.setState({
-                count: count + 1
-              })
-            }}
+            onPress={this.HandlePlus}
           >
             <Text
               style={[
@@ -78,24 +88,19 @@ export default class App extends React.Component {
           </TouchableOpacity>                  
 
           <TouchableOpacity                    //Minus '-' button
-            style={{
-              flexDirection: 'column',          //Tried putting plusminusbutton style here, didn't work with 'display'
-              justifyContent: 'center',
-              alignItems: 'center',
-              height: BUTTON_FONT_SIZE * 2/3,
-              aspectRatio: 1,
-              display: count <= 0 ? 'none' : 'flex',
-            }}
-            onPress = {()=>{
-              this.setState({
-                count: count - 1
-              })
-            }}
+            style={[
+              styles.plusMinusButton,
+            ]}
+            onPress = {canGoDown 
+              ? (this.HandleMinus)
+              : null
+            }
           >
             <Text
               style={[
                 styles.plusMinusButtonText, 
-                styles.minusButtonText,
+                styles.minusButtonText, 
+                canGoDown ? null : [styles.disabled],
               ]}
             >
               {'-'}
@@ -170,4 +175,8 @@ const styles = StyleSheet.create({
   resetButtonText: {
     fontSize: 50,
   },
+
+  disabled: {
+    opacity: 0.5,
+  }
 })
