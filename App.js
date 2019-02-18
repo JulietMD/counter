@@ -1,23 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-const VISIBLE_STYLE = {             //THis constant isn't being used - delete? 
-  borderColor: '#000',
-  borderWidth: 1,
-}
+import {BUTTON_FONT_SIZE, INITIAL_COUNT} from './constant'
+import PlusMinusWrapper from './plus-minus-wrapper'
 
-const BUTTON_FONT_SIZE = 150
-const INITIAL_COUNT = 10            //Can change the initial starting number of the counter 
-
-const ON_ZERO_COLOR = '#FF0000'
-const DEFAULT_COLOR = '#00FF00'
-
-// TODO disable the minus button
-// TODO reset should not be active if the value is alreay the initail one
-// TODO I want from 10 to 0 lower I go, more close to ON_ZERO_COLOR the number should be over 9 if should be DEFAULT_COLOR
-
-// lib to playu with colors https://www.npmjs.com/package/color
-// need to be installed and saved !!!!
 export default class App extends React.Component {
   constructor(props) {
     super(props)
@@ -67,11 +53,7 @@ export default class App extends React.Component {
           {count}
         </Text>
 
-        <View
-          style={[                              //Plus minus inner wrapper 
-            styles.plusMinusWrapper,
-          ]}
-        >
+        <PlusMinusWrapper>
           <TouchableOpacity                     //Add '+' Button
             style={[
               styles.plusMinusButton,
@@ -107,7 +89,7 @@ export default class App extends React.Component {
               {'-'}
             </Text>
           </TouchableOpacity>
-        </View>
+        </PlusMinusWrapper>
         
         <TouchableOpacity                       // 'Reset' button
           onPress={canNotReset
